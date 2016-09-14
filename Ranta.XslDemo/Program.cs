@@ -12,10 +12,12 @@ namespace Ranta.XslDemo
     {
         static void Main(string[] args)
         {
-            Example_1();
+            //RunExample1();
+
+            RunExample2();
         }
 
-        static void Example_1()
+        static void RunExample1()
         {
             XslCompiledTransform transform = new XslCompiledTransform();
 
@@ -26,6 +28,28 @@ namespace Ranta.XslDemo
             using (StringWriter writer = new StringWriter(output))
             {
                 transform.Transform("Example_1\\data.xml", new XsltArgumentList { }, writer);
+            }
+
+            Console.WriteLine(output.ToString());
+
+            string text = output.ToString();
+
+            Console.WriteLine(".......................");
+
+            Console.Read();
+        }
+
+        static void RunExample2()
+        {
+            XslCompiledTransform transform = new XslCompiledTransform();
+
+            transform.Load("Example_2\\style.xslt");
+
+            StringBuilder output = new StringBuilder();
+
+            using (StringWriter writer = new StringWriter(output))
+            {
+                transform.Transform("Example_2\\article.xml", new XsltArgumentList { }, writer);
             }
 
             Console.WriteLine(output.ToString());
